@@ -128,10 +128,8 @@ export default class DateRangePicker extends Component {
     while (current <= lastDay) {
       const currentTime = current.getTime()
       const dayClassName = classNames('drp-day', {
-        'is-disabled': (
-          this.excludedDates.indexOf(current.toDateString()) !== -1 ||
-          (current < this.now && this.allowPastRange === false)
-        ),
+        'is-excluded': this.excludedDates.indexOf(current.toDateString()) !== -1,
+        'is-disabled': current < this.now && this.allowPastRange === false,
         'is-in-other-month': current.getMonth() !== this.state.currentMonth,
         'is-in-past': current < this.now,
         'is-now': current.toDateString() === this.now.toDateString(),

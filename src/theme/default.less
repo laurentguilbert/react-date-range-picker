@@ -1,110 +1,118 @@
 .drp {
-    color: #757575;
-    font-family: 'Work Sans', sans-serif;
-    width: 100%;
+  color: #757575;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .drp-month {
-    overflow: auto;
+  overflow: auto;
 }
 
 .drp-day {
-    box-sizing: border-box;
-    cursor: pointer;
-    float: left;
-    padding-bottom: (100% / 7);
-    position: relative;
-    text-align: center;
-    transition: background-color 200ms linear;
-    user-select: none;
-    width: (100% / 7);
+  box-sizing: border-box;
+  cursor: pointer;
+  float: left;
+  padding-bottom: (100% / 7);
+  position: relative;
+  text-align: center;
+  transition: background-color 200ms linear;
+  user-select: none;
+  width: (100% / 7);
 
-    &.is-disabled {
-        cursor: default;
-        opacity: .5;
+  &.is-excluded:not(.is-in-past) {
+    background-color: #ff7878;
+
+    .drp-day-name,
+    .drp-day-number {
+      color: white;
     }
+  }
 
-    &.is-now {
-        background-color: #8a8a8a;
+  &.is-disabled {
+    cursor: default;
+    opacity: .5;
+  }
 
-        .drp-day-name,
-        .drp-day-number {
-            color: white;
-        }
+  &.is-now {
+    background-color: #8a8a8a;
+
+    .drp-day-name,
+    .drp-day-number {
+      color: white;
     }
+  }
 
-    &.is-in-other-month {
-        background-color: #f5f5f5;
+  &.is-in-other-month {
+    background-color: #f5f5f5;
+  }
+
+  &.is-start,
+  &.is-in-range:not(.is-excluded) {
+    background-color: #50a9b3;
+
+    .drp-day-name,
+    .drp-day-number {
+      color: white;
     }
-
-    &.is-start,
-    &.is-in-range:not(.is-disabled) {
-        background-color: #50a9b3;
-
-        .drp-day-name,
-        .drp-day-number {
-            color: white;
-        }
-    }
+  }
 }
 
 .drp-day-content {
-    align-items: center;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-evenly;
-    padding: 10px;
-    position: absolute;
-    width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
 }
 
 .drp-day-name {
-    font-size: 0.8em;
-    color: #cccccc;
+  font-size: 0.8em;
+  color: #cccccc;
 }
 
 .drp-day-number {
-    color: #757575;
-    font-size: 2.5em;
-    font-weight: bold;
+  color: #757575;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .drp-nav {
-    display: flex;
-    padding: 20px;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .drp-nav-next,
 .drp-nav-prev {
-    cursor: pointer;
-    font-size: 2em;
-    user-select: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  user-select: none;
 }
 
 .drp-nav-prev.is-disabled {
-    cursor: default;
-    opacity: .3;
+  cursor: default;
+  opacity: .3;
 }
 
 .drp-nav-month-name {
-    font-size: 2em;
-    font-weight: bold;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .drp-range {
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
 }
 
 .drp-range-start,
 .drp-range-end {
-    color: #50a9b3;
-    font-size: 2em;
-    font-weight: bold;
+  color: #50a9b3;
+  font-size: 1.5em;
+  font-weight: bold;
 }

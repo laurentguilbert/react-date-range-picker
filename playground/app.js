@@ -12,7 +12,7 @@ class App extends Component {
     const month = now.getMonth()
     const date = now.getDate()
     const excludedDates = [
-        new Date(year, month, date + 5).toDateString(),
+        new Date(year, month, date - 5).toDateString(),
         new Date(year, month, date + 10).toDateString(),
         new Date(year, month + 1, 8).toDateString(),
     ]
