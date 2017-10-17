@@ -119,7 +119,9 @@ export default class DateRangePicker extends Component {
       this.state.currentMonth + 1,
       0
     )
-    lastDay.setDate(lastDay.getDate() + (7 - lastDay.getDay()))
+    if (lastDay.getDay() !== 0) {
+      lastDay.setDate(lastDay.getDate() + (7 - lastDay.getDay()))
+    }
 
     let dayNodes = []
     let current = new Date(firstDay.getTime())
