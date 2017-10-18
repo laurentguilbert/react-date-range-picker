@@ -32,7 +32,6 @@ export default class DateRangePicker extends Component {
   }
 
   goToPrevMonth() {
-    // Make sure we don't go back in time.
     if (
       this.allowPastRange === false &&
       this.state.currentMonth <= this.now.getMonth() &&
@@ -65,8 +64,7 @@ export default class DateRangePicker extends Component {
     return dates
   }
 
-  selectDay(date) {
-    // Make sure we can't select a date in the past.
+  selectDate(date) {
     if (
       this.excludedDates.indexOf(date.toDateString()) !== -1 ||
       (this.allowPastRange === false && date < this.now)
@@ -122,31 +120,31 @@ export default class DateRangePicker extends Component {
     )
   }
 
-  getDayNodes() {
-    let firstDay = new Date(
+  getDateNodes() {
+    let firstDate = new Date(
       this.state.currentYear,
       this.state.currentMonth,
       1
     )
-    firstDay.setDate(
-      firstDay.getDate() -
-      (firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1)
+    firstDate.setDate(
+      firstDate.getDate() -
+      (firstDate.getDay() === 0 ? 6 : firstDate.getDay() - 1)
     )
 
-    let lastDay = new Date(
+    let lastDate = new Date(
       this.state.currentYear,
       this.state.currentMonth + 1,
       0
     )
-    if (lastDay.getDay() !== 0) {
-      lastDay.setDate(lastDay.getDate() + (7 - lastDay.getDay()))
+    if (lastDate.getDay() !== 0) {
+      lastDate.setDate(lastDate.getDate() + (7 - lastDate.getDay()))
     }
 
-    let dayNodes = []
-    let current = new Date(firstDay.getTime())
-    while (current <= lastDay) {
+    let dateNodes = []
+    let current = new Date(firstDate.getTime())
+    while (current <= lastDate) {
       const currentTime = current.getTime()
-      const dayClassName = classNames('drp-day', {
+      const dateClassName = classNames('drp-date', {
         'is-excluded': this.excludedDates.indexOf(current.toDateString()) !== -1,
         'is-disabled': current < this.now && this.allowPastRange === false,
         'is-in-other-month': current.getMonth() !== this.state.currentMonth,
@@ -169,15 +167,15 @@ export default class DateRangePicker extends Component {
           current < this.state.startDate
         )
       })
-      dayNodes.push(
+      dateNodes.push(
         <div
-          className={dayClassName}
+          className={dateClassName}
           key={currentTime}
-          onClick={this.selectDay.bind(this, new Date(current.getTime()))}
+          onClick={this.selectDate.bind(this, new Date(current.getTime()))}
         >
-          <div className='drp-day-content'>
-            <div className="drp-day-number">{current.getDate()}</div>
-            <div className="drp-day-name">
+          <div className='drp-date-content'>
+            <div className="drp-date-number">{current.getDate()}</div>
+            <div className="drp-date-day">
               {this.getDayName(current.getDay())}
             </div>
           </div>
@@ -185,7 +183,7 @@ export default class DateRangePicker extends Component {
       )
       current.setDate(current.getDate() + 1)
     }
-    return dayNodes
+    return dateNodes
   }
 
   render() {
@@ -218,7 +216,7 @@ export default class DateRangePicker extends Component {
           </div>
         </div>
         <div className="drp-month">
-          {this.getDayNodes()}
+          {this.getDateNodes()}
         </div>
       </div>
     )

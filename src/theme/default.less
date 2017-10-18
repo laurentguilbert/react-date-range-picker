@@ -7,7 +7,7 @@
   overflow: auto;
 }
 
-.drp-day {
+.drp-date {
   box-sizing: border-box;
   cursor: pointer;
   float: left;
@@ -21,8 +21,8 @@
   &.is-excluded:not(.is-in-past) {
     background-color: #ff7878;
 
-    .drp-day-name,
-    .drp-day-number {
+    .drp-date-day,
+    .drp-date-number {
       color: white;
     }
   }
@@ -35,8 +35,8 @@
   &.is-now {
     background-color: #8a8a8a;
 
-    .drp-day-name,
-    .drp-day-number {
+    .drp-date-day,
+    .drp-date-number {
       color: white;
     }
   }
@@ -49,14 +49,14 @@
   &.is-in-range:not(.is-excluded) {
     background-color: #50a9b3;
 
-    .drp-day-name,
-    .drp-day-number {
+    .drp-date-day,
+    .drp-date-number {
       color: white;
     }
   }
 }
 
-.drp-day-content {
+.drp-date-content {
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -68,12 +68,12 @@
   width: 100%;
 }
 
-.drp-day-name {
+.drp-date-day {
   font-size: 0.8em;
   color: #cccccc;
 }
 
-.drp-day-number {
+.drp-date-number {
   color: #757575;
   font-size: 2em;
   font-weight: bold;
