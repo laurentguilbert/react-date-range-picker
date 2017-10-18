@@ -47,6 +47,24 @@ export default class DateRangePicker extends Component {
     }
   }
 
+  getDateRange(startDate, endDate) {
+    if (startDate === null) {
+      return []
+    } else if (endDate === null) {
+      return [new Date(startDate.getTime())]
+    }
+
+    let dates = []
+    let current = new Date(startDate.getTime())
+    while (current <= endDate) {
+      if (this.excludedDates.indexOf(current.toDateString()) === -1) {
+        dates.push(new Date(current.getTime()))
+      }
+      current.setDate(current.getDate() + 1)
+    }
+    return dates
+  }
+
   selectDay(date) {
     // Make sure we can't select a date in the past.
     if (
@@ -68,7 +86,8 @@ export default class DateRangePicker extends Component {
     }
     this.setState(newState)
     if (this.props.onDateRangeChange !== undefined) {
-      this.props.onDateRangeChange(newState.startDate, newState.endDate)
+      const dates = this.getDateRange(newState.startDate, newState.endDate)
+      this.props.onDateRangeChange(dates)
     }
   }
 

@@ -18,7 +18,7 @@ class App extends Component {
     ]
     return (
       <DateRangePicker
-        onDateRangeChange={(start, end) => console.log(start, end)}
+        onDateRangeChange={(range) => console.log(range)}
         allowPastRange={false}
         excludedDates={excludedDates}
       />
